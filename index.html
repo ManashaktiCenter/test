@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Personality Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right,#d4fc79,#96e6a1);
+}
+
+header{
+    background:#2e7d32;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.page{display:none;padding:20px;}
+.active{display:block;}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+/* QUESTIONS */
+.form-question{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* OPTIONS */
+.options{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+}
+
+.options label{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.options input{
+    margin-bottom:5px;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:12px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    margin-top:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1b5e20;
+}
+
+/* RESULT */
+.result-box{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.icons{
+    display:flex;
+    justify-content:space-around;
+    margin-top:15px;
+}
+
+.icons div{
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<header>🧠 Personality Test</header>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+<div class="card">
+<h3>Enter Details</h3>
+<input type="text" id="name" placeholder="Enter Name">
+<input type="number" id="age" placeholder="Enter Age">
+<input type="email" id="email" placeholder="Enter Email">
+<button onclick="nextPage()">Start Test</button>
+</div>
+</div>
+
+<!-- QUESTION PAGES -->
+<div class="page" id="page2"><h3>Fear</h3><div id="fear"></div><button onclick="nextPage()">Next</button></div>
+<div class="page" id="page3"><h3>Anger</h3><div id="anger"></div><button onclick="nextPage()">Next</button></div>
+<div class="page" id="page4"><h3>Courage</h3><div id="courage"></div><button onclick="nextPage()">Next</button></div>
+<div class="page" id="page5"><h3>Peace</h3><div id="peace"></div><button onclick="calculate()">Submit</button></div>
+
+<!-- RESULT -->
+<div class="page" id="resultPage">
+<div class="result-box" id="result"></div>
+
+<div class="icons">
+<div>😨<p>Fear</p></div>
+<div>😡<p>Anger</p></div>
+<div>💪<p>Courage</p></div>
+<div>😌<p>Peace</p></div>
+</div>
+
+<canvas id="chart"></canvas>
+</div>
+
+<script>
+let currentPage = 1;
+
+const data = {
+    fear: Array(73).fill("Fear Question"),
+    anger: Array(51).fill("Anger Question"),
+    courage: Array(43).fill("Courage Question"),
+    peace: Array(20).fill("Peace Question")
+};
+
+/* CREATE QUESTIONS */
+function create(category){
+    let container = document.getElementById(category);
+
+    data[category].forEach((q,i)=>{
+        let div = document.createElement("div");
+        div.className="form-question";
+
+        let options ="";
+        for(let j=0;j<=5;j++){
+            options += `
+            <label>
+                <input type="radio" name="${category}${i}" value="${j}">
+                <span>${j}</span>
+            </label>`;
+        }
+
+        div.innerHTML = `
+            <p><b>${i+1}. ${q}</b></p>
+            <div class="options">${options}</div>
+            <div style="display:flex; justify-content:space-between; font-size:12px;">
+                <span>Low</span>
+                <span>High</span>
+            </div>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+create("fear");
+create("anger");
+create("courage");
+create("peace");
+
+/* NAVIGATION */
+function nextPage(){
+    document.getElementById("page"+currentPage).classList.remove("active");
+    currentPage++;
+    document.getElementById("page"+currentPage).classList.add("active");
+}
+
+/* CALCULATION */
+function calculate(){
+
+    let totals = {fear:0, anger:0, courage:0, peace:0};
+
+    for(let category in data){
+        data[category].forEach((q,i)=>{
+            let selected = document.querySelector(`input[name="${category}${i}"]:checked`);
+            if(selected){
+                totals[category] += Number(selected.value);
+            }
+        });
+    }
+
+    let result = {
+        fear: (totals.fear / 365) * 100,
+        anger: (totals.anger / 245) * 100,
+        courage: (totals.courage / 215) * 100,
+        peace: (totals.peace / 95) * 100   // change to 100 if needed
+    };
+
+    document.getElementById("page"+currentPage).classList.remove("active");
+    document.getElementById("resultPage").classList.add("active");
+
+    document.getElementById("result").innerHTML = `
+        <b>Name:</b> ${document.getElementById("name").value}<br>
+        <b>Age:</b> ${document.getElementById("age").value}<br><br>
+
+        Fear: ${result.fear.toFixed(1)}%<br>
+        Anger: ${result.anger.toFixed(1)}%<br>
+        Courage: ${result.courage.toFixed(1)}%<br>
+        Peace: ${result.peace.toFixed(1)}%
+    `;
+
+    drawChart(result);
+    sendToGoogleSheet(result);
+}
+
+/* PIE CHART */
+function drawChart(data){
+    new Chart(document.getElementById("chart"),{
+        type:"pie",
+        data:{
+            labels:["Fear","Anger","Courage","Peace"],
+            datasets:[{
+                data:[data.fear,data.anger,data.courage,data.peace],
+                backgroundColor:["#4caf50","#f44336","#ff9800","#2196f3"]
+            }]
+        }
+    });
+}
+function sendToGoogleSheet(result){
+    fetch("PASTE_YOUR_WEB_APP_URL", {
+        method: "POST",
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            age: document.getElementById("age").value,
+            fear: result.fear.toFixed(1),
+            anger: result.anger.toFixed(1),
+            courage: result.courage.toFixed(1),
+            peace: result.peace.toFixed(1)
+        })
+    })
+    .then(res => console.log("Saved"))
+    .catch(err => console.error(err));
+}
+</script>
+
+</body>
+</html>
