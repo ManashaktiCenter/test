@@ -245,7 +245,8 @@ function drawChart(data){
     });
 }
 function sendToGoogleSheet(result){
-    fetch("PASTE_YOUR_WEB_APP_URL", {
+
+    fetch("https://script.google.com/macros/s/AKfycbxW7FEkkZ3tDv6eNMgHnhSy61E6vJRcV4ROVLP5QrG6ibvnpWsLvEh3K4jb69iBNhiewg/exec", {
         method: "POST",
         body: JSON.stringify({
             name: document.getElementById("name").value,
@@ -256,8 +257,8 @@ function sendToGoogleSheet(result){
             peace: result.peace.toFixed(1)
         })
     })
-    .then(res => console.log("Saved"))
-    .catch(err => console.error(err));
+    .then(response => console.log("Saved to sheet"))
+    .catch(error => console.error("Error:", error));
 }
 </script>
 
