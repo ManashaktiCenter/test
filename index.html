@@ -138,7 +138,9 @@ button:hover{
 <div>😌<p>Peace</p></div>
 </div>
 
-<canvas id="chart"></canvas>
+<div style="max-width:400px; margin:auto;">
+    <canvas id="chart"></canvas>
+</div>
 </div>
 
 <script>
@@ -241,6 +243,10 @@ function drawChart(data){
                 data:[data.fear,data.anger,data.courage,data.peace],
                 backgroundColor:["#4caf50","#f44336","#ff9800","#2196f3"]
             }]
+        },
+        options:{
+            responsive:true,
+            maintainAspectRatio:true
         }
     });
 }
