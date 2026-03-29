@@ -122,10 +122,10 @@ button:hover{
 </div>
 
 <!-- QUESTION PAGES -->
-<div class="page" id="page2"><h3>Fear</h3><div id="fear"></div><button onclick="nextPage()">Next</button></div>
-<div class="page" id="page3"><h3>Anger</h3><div id="anger"></div><button onclick="nextPage()">Next</button></div>
-<div class="page" id="page4"><h3>Courage</h3><div id="courage"></div><button onclick="nextPage()">Next</button></div>
-<div class="page" id="page5"><h3>Peace</h3><div id="peace"></div><button onclick="calculate()">Submit</button></div>
+<div class="page" id="page2"><h3>Fear भय    </h3><div id="fear"></div><button onclick="nextPage()">Next</button></div>
+<div class="page" id="page3"><h3>Anger राग    </h3><div id="anger"></div><button onclick="nextPage()">Next</button></div>
+<div class="page" id="page4"><h3>Courage धैर्य   </h3><div id="courage"></div><button onclick="nextPage()">Next</button></div>
+<div class="page" id="page5"><h3>Peace शांती </h3><div id="peace"></div><button onclick="calculate()">Submit</button></div>
 
 <!-- RESULT -->
 <div class="page" id="resultPage">
@@ -147,37 +147,283 @@ button:hover{
 let currentPage = 1;
 
 const data = {
-    fear: Array(73).fill("Fear Question"),
-    anger: Array(51).fill("Anger Question"),
-    courage: Array(43).fill("Courage Question"),
-    peace: Array(20).fill("Peace Question")
+    fear: [
+
+"### Psychic (मानसिक)",
+
+"Shy - बुजरा",
+"Unresolved - अनिश्वयी",
+"Bashful - लज्जावान",
+"Emotional - भावनाशील",
+"Introvert - अंतर्मुखता",
+"Solitariness - एकांतवास",
+"Grumbling - रडकेपणा",
+"Inferiority complex - न्यूनगंडता",
+"Insecurity - असुरक्षिता",
+"Slothful - आळशी",
+"Slouch - गबाळा",
+"Forgetful - विस्मरण",
+"Dull - मंदबुद्धी",
+"Self-centered - आत्मकेंद्रित",
+"Falsehood - असत्यभाषी",
+"Shrewd - धूर्तता",
+"Dejected - निरुत्साही वृत्ती",
+"Desperate - निराशा",
+"Irresolute - धरसोड वृत्ती",
+"Miserly - कंजूष",
+"Sleep fear - निद्राभय",
+"Dream fear - स्वप्नभय",
+"Fear of darkness - अंधारभय",
+"Fear of ghost - भूतभय",
+"Accusative - परदोषारोप",
+"Insomnia - निद्रानाश",
+"Bed-wetting - निद्रामूत्रता",
+"Restlessness - अशांती",
+"Dissatisfied - असमाधानी",
+"Complaining - कुरकुरी वृत्ती",
+"Truant - उनाड",
+"Jealous - मत्सरी",
+"Greedy - खादाड",
+"Stammer - तोतरा",
+"Fear of father - पिताभय",
+"Fear of mother - माताभय",
+"Fear of brother - बंधुभय",
+"Fear of sister - भगिनी भय",
+"Only child - एकुलता एक",
+"Spoiled of beating - मारामुळे बिघडणे",
+"Fear of relation death - आत्मीय मृत्यु भय",
+"Parents discord - माता-पिता मतभेद",
+"Spoiled of fondling - लाडामुळे बिघडणे",
+
+"### Social (सामाजिक)",
+
+"Love for bad company - कुसंगती प्रियता",
+"Superstitious - अंधश्रद्धा",
+"Covetous - लालची",
+"Servility - लाचारी",
+"Voluptuous - विलासी",
+"Silly - बावळट",
+"Slovenly - वेडगळ",
+"Forgetful - विसरभोळा",
+"Fear of friend - मित्रभय",
+"Any other fear - अन्य भय",
+
+"### Physical (शारीरिक)",
+
+"Health - आरोग्य",
+"Intense painful disease - अति तीव्र वेदना",
+"Chronically (painless) - जीर्ण (वेदनारहित)",
+"Chronically (painful) - जीर्ण (वेदनासहित)",
+"Deformity - व्यंग",
+"Giddiness - गुंगी / चक्कर",
+
+"### Educational (शैक्षणिक)",
+
+"Fear of studying - अभ्यासभय",
+"Fear of maths - गणितभय",
+"Fear of science - शास्त्रभय",
+"Fear of language - भाषाभय",
+"Fear of history - इतिहासभय",
+"Fear of geography - भूगोलभय",
+"Fear of arts - कलाभय",
+"Fear of technique - तंत्रशास्त्रभय",
+"Aversion of studies - अभ्यासद्वेष",
+"Fear of school - शाळाभय",
+"Fear of teacher - शिक्षकभय",
+"Fear of study - अध्ययनभय",
+"Fear of punishment - दंडभय",
+"Any other fears - अन्य भय"
+
+],
+
+
+    anger: [
+
+"### Physical (शारीरिक)",
+
+"Obstinate - हट्टी",
+"Exciting - तापट",
+"Sulky - कुरकुरे",
+"Tumultuous - आकांडतांडव",
+"Diet complains - खाण्याच्या तक्रारी",
+
+"### Psychic (मानसिक)",
+
+"Calculating - हिशेबी",
+"Squandering - उधळपट्टी",
+"Hypocrite - ढोंगी",
+"Mockery - उपहास",
+"Whimsical - चंचल",
+"Hypocrite (repeat) - ढोंग",
+"Pestering - छेडछाड",
+"Ungrateful - अकृतज्ञ",
+"Immorality - अनैतिकता",
+"Addict - व्यसनी",
+"Cruel - क्रूर",
+"Crook - चोर / गुंड",
+"Truant - कामचुकार",
+"Careless - निष्काळजी",
+"Excusive - सबबीवादी",
+"Over courageous - अतिसाहसी",
+"Over enthusiastic - अति उत्साही",
+"Quarrelsome - भांडखोर",
+"Bad habits - वाईट सवयी",
+"Sceptic - संशयी",
+"Argumentative - वादप्रिय",
+"Crazy - वेडसर",
+"Malicious - द्वेषी",
+"Revengeful - सूडबुद्धी",
+"Impatient - उतावळा",
+"Active - चपळ",
+"Frustration - वैफल्यवृत्ती",
+
+"### Family Rage (कौटुंबिक राग)",
+
+"Rage of father - पिता-राग",
+"Rage of mother - माता-राग",
+"Rage of sister - भगिनी-राग",
+"Rage of brother - बंधू-राग",
+"Rage of comparison - तुलना-राग",
+"Curt - तुसडे",
+"Stubborn - हट्टी",
+
+"### Social (सामाजिक)",
+
+"Gangster - टोळी (गुंड)",
+"Vagabond - भटका",
+"Truant - उनाड",
+"Non co-operative - असहकार",
+"Sceptic (social) - संशयी",
+"Opportunist - संधीसाधू",
+"Jesting / ridicule - टवाळखोरी",
+"Atrocious - घातपात",
+
+"### Educational (शैक्षणिक)",
+
+"Rage of guru - गुरु राग",
+"Contempt of school - शाळा राग",
+"Eccentric - एककल्लीपणा",
+"Academic frustration - शैक्षणिक वैफल्य"
+],
+    courage: [
+"### Disposition (स्वभावज)",
+
+"Rationalist – बुद्धिवादी",
+"Recitation (Once) – एकपाठी",
+"Sport love – खेळाची आवड",
+"Gymnast – कसरतीप्रिय",
+"Extraordinary talent – असामान्य बुद्धिमत्ता",
+"Self respect – स्वाभिमान",
+"Creativity – सृजनशीलता",
+"Obedient – आज्ञाधारक",
+"Humble – नम्र",
+"Vigilant at work – दक्षतापूर्ण कार्य",
+"Analytical – चिकित्सक",
+"Tolerating – सहनशील",
+"Outspoken – स्पष्टवक्ता",
+"Frugal – काटकसरी",
+"Bold – धिट",
+"Cheerful – हसरी वृत्ती",
+"Assiduous – कष्टाळू वृत्ती",
+"Studious – अभ्यासू वृत्ती",
+"Zealous – उत्साही वृत्ती",
+"Perseverance – चिकाटी",
+"Love of wonder – अद्भुत प्रियता",
+"Serene – शांत वृत्ती",
+"Open minded – मनमोकळी वृत्ती",
+"Well cultured – सुसंस्कृत",
+"Tolerating criticism – टीका सहनशक्ती",
+"Bookish – वाचनप्रिय",
+"Sturdy – कणखर",
+"Neutral – तटस्थ वृत्ती",
+"Firm – ठाम वृत्ती",
+"Industrious – उद्योगी वृत्ती",
+"Punctual – वक्तशीर",
+"Presence of mind – प्रसंगावधान वृत्ती",
+
+"### Relating to Family - कौटुंबिक",
+
+"Gratitude – कृतज्ञता",
+"Planning – योजनाबद्ध",
+"Humorous – विनोदी",
+"Social – सामाजिक",
+
+"### Social सामाजिक ",
+
+"Leadership – नेतृत्वगुण",
+"Nationalist – राष्ट्रप्रेमी",
+"Parliamentarian – सभागृह वृत्ती",
+"Talkative – बोलकी वृत्ती",
+"Agreeable – मनमिळाऊ वृत्ती",
+"Omnifriend – जगन्मित्र",
+"All attracting – सर्व आकर्षक",
+"Selfless – निःस्वार्थी"
+],
+    peace: [ 
+"Innate God loving - सहजदेवभक्त",
+"Cogitative - विचारशील वृत्ती",
+"Metaculously - सावधानपणे",
+"Truthful – सत्यप्रिय / सत्यवादी",
+"Nature lover – निसर्गप्रेमी",
+"Balancing – समतोल वृत्ती",
+"Solitudinous – एकांतप्रिय",
+"Over agreeableness – अति मवाळस्वभाव",
+"Service – सेवाभावी वृत्ती",
+"Rationally religious – डोळस धार्मिक वृत्ती",
+"Unwantedness – निरिच्छ वृत्ती",
+"Benevolence justful – न्यायप्रिय",
+"Studious – अभ्यासू",
+"Sound health – आरोग्यसंपन्न",
+"Rationalist – बुद्धिवादी",
+"Contented – समाधानी वृत्ती",
+"Affectionate – प्रेमळ",
+"Diligent – कर्मठ"
+]
 };
 
 /* CREATE QUESTIONS */
 function create(category){
+
     let container = document.getElementById(category);
+    let number = 1; // correct numbering
 
     data[category].forEach((q,i)=>{
-        let div = document.createElement("div");
-        div.className="form-question";
 
-        let options ="";
-        for(let j=0;j<=5;j++){
-            options += `
-            <label>
-                <input type="radio" name="${category}${i}" value="${j}">
-                <span>${j}</span>
-            </label>`;
+        let div = document.createElement("div");
+
+        // ✅ HEADING CHECK
+        if(q.trim().startsWith("###")){
+            div.innerHTML = `
+                <h4 style="color:#2e7d32; margin-top:15px;">
+                    ${q.replace("###","").trim()}
+                </h4>
+            `;
         }
 
-        div.innerHTML = `
-            <p><b>${i+1}. ${q}</b></p>
-            <div class="options">${options}</div>
-            <div style="display:flex; justify-content:space-between; font-size:12px;">
-                <span>Low</span>
-                <span>High</span>
-            </div>
-        `;
+        // ✅ NORMAL QUESTION
+        else{
+            div.className="form-question";
+
+            let options ="";
+            for(let j=0;j<=5;j++){
+                options += `
+                <label>
+                    <input type="radio" name="${category}${i}" value="${j}">
+                    <span>${j}</span>
+                </label>`;
+            }
+
+            div.innerHTML = `
+                <p><b>${number}. ${q}</b></p>
+                <div class="options">${options}</div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                    <span>Low</span>
+                    <span>High</span>
+                </div>
+            `;
+
+            number++; // increase only for questions
+        }
 
         container.appendChild(div);
     });
