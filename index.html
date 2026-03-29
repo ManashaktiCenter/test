@@ -246,8 +246,8 @@ function drawChart(data){
 }
 function sendToGoogleSheet(result){
 
-    fetch("https://script.google.com/macros/s/AKfycbxW7FEkkZ3tDv6eNMgHnhSy61E6vJRcV4ROVLP5QrG6ibvnpWsLvEh3K4jb69iBNhiewg/exec", {
-        method: "POST",
+   fetch("https://script.google.com/macros/s/AKfycbyJM7m6PkV_j8VT23kL1sMuItjv0z6lT27Ok4Yn61vtOrPtdSL0seAeXP_qA_-Z4jManA/exec", {
+    method: "POST",
         body: JSON.stringify({
             name: document.getElementById("name").value,
             age: document.getElementById("age").value,
